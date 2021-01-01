@@ -13,6 +13,7 @@ public class OkHttpHandler  extends AsyncTask {
     protected Object doInBackground(Object[] objects) {
         Response response = null;
         try {
+
             //Toast.makeText(this, "inside testservlet: ", Toast.LENGTH_SHORT).show();
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();

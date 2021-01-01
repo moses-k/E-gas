@@ -69,7 +69,7 @@
     </style>
 
     <!--style for ripple library-->
-   <!-- <style name="RippleStyleWhite">
+    <style name="RippleStyleWhite">
         <item name="mrl_rippleOverlay">true</item>
         <item name="mrl_rippleColor">#80FFFFFF</item>
         <item name="mrl_rippleHover">true</item>
@@ -82,7 +82,8 @@
 
     <style name="RippleStyleDark" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#80000000</item>
-    </style>-->
+    </style>
+    <!--style for ripple library-->
 
     <style name="Dialog.Theme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/colorPrimary</item>

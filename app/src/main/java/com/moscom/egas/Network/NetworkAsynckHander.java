@@ -2,12 +2,14 @@ package com.moscom.egas.Network;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.moscom.egas.Activities.dashboard;
 import com.moscom.egas.Activities.loginPage;
 import com.moscom.egas.environment.EgasEnvironment;
 
@@ -91,8 +93,11 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                         if (error.equals("false")){
                             result = "success";
                             Log.i(className, "success:  jsonResponse is : "+ jsonResponse );
-                             alertDialog.setMessage("Login success : "+ jsonResponse );
-                            alertDialog.show();
+                            // alertDialog.setMessage("Login success : "+ jsonResponse );
+                           // alertDialog.show();
+
+                          //  Intent intent = new Intent(NetworkAsynckHander.this, dashboard.class);
+                           // startActivity(intent);
                            //  makeText(this, "Login success : " + jsonResponse, LENGTH_SHORT).show();
                         }else  if (error.equals("true")) {
                             Log.i(className, "fail:  jsonResponse is : "+ jsonResponse );
@@ -111,7 +116,6 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                         }else if(error.equals("invalidpass")){
                             Log.i(className, "fail:  jsonResponse is : "+ jsonResponse );
                             result = "failed";
-
                         }
                     }else{
                         // Toast.makeText(NetworkAsynckHander.this, "No response : " , LENGTH_SHORT).show();
@@ -133,8 +137,8 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
     }
     @Override
     protected void onPreExecute () {
-       // alertDialog = new AlertDialog.Builder( context ).create();
-       // alertDialog.setTitle( "Login Status" );
+        alertDialog = new AlertDialog.Builder( context ).create();
+       alertDialog.setTitle( "Login Status" );
 
     }
 

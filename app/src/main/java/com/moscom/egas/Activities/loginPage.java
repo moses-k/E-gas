@@ -3,6 +3,7 @@ package com.moscom.egas.Activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.moscom.egas.Network.NetworkAsynckHander;
 import com.moscom.egas.Network.OkHttpHandler;
 import com.moscom.egas.R;
 import com.moscom.egas.environment.EgasEnvironment;
+import com.moscom.egas.utilities.NetworkCheck;
+
 import org.json.JSONObject;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -97,7 +100,7 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
         }
     }
     public void UserLogin(View view) throws Exception {
-        if (!isConnected(loginPage.this)) buildDialog(loginPage.this).show();
+        if (!NetworkCheck.isConnect(loginPage.this)) buildDialog(loginPage.this).show();
         else {
             String userName = null; String userpass =null;   String userType = null; String response = null;
            // try{
@@ -144,8 +147,17 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
          //  boolean result =  sendLoginPost1(userName, userpass, userType );
             String requestType = "login";
             NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
-            networkRequest.execute(requestType, userName, userpass, userType);
-            makeText(getApplicationContext(), "good 8", LENGTH_SHORT).show();
+           // (String)UserLoginDao.class.getConstructor().newInstance().validateUser(userId, userPwd, userType);
+          //  String status = (String)NetworkAsynckHander.class.getConstructor().newInstance().execute(requestType, userName, userpass, userType);
+            String res = networkRequest.execute(requestType, userName, userpass, userType).get();
+            makeText(getApplicationContext(), "good : res is "+ res, LENGTH_SHORT).show();
+            if(res.equals("success")){
+                Intent intent = new Intent(loginPage.this, dashboard.class);
+                startActivity(intent);
+            }else {
+                makeText(getApplicationContext(), "login failed... Userid/Password incorrect ", LENGTH_SHORT).show();
+            }
+
 
 
             // testservlet();
@@ -180,19 +192,19 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
         }
     }
     //check internet connection
-    public boolean isConnected(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
-                return true;
-            else return false;
-        } else
-            return false;
-    }
+//    public boolean isConnected(Context context) {
+//        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+//
+//        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+//            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+//                return true;
+//            else return false;
+//        } else
+//            return false;
+//    }
     //dialogbox
     public AlertDialog.Builder buildDialog(Context c) {
         AlertDialog.Builder builder = new AlertDialog.Builder(c);

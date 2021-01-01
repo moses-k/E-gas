@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "219804717429",
+    "firebase_url": "https://e-gas-ba3f8.firebaseio.com",
+    "project_id": "e-gas-ba3f8",
+    "storage_bucket": "e-gas-ba3f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219804717429:android:3b61b0c10f41231ba3c33c",
+        "android_client_info": {
+          "package_name": "com.example.e_gas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219804717429-b94i117fgvv6tjjnpimah1e5skk05rss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_gas",
+            "certificate_hash": "133795152a27ac5b30ba4503a758587850324ea6"
+          }
+        },
+        {
+          "client_id": "219804717429-ogtcj47hijq3849fsq84pkij31dfpt5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeK5OiDbtw4geyM0kTpn0kHQAZGSQ49W0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219804717429-ogtcj47hijq3849fsq84pkij31dfpt5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -245,6 +245,13 @@
                             android:text="Refill"
                             android:theme="@style/Button.Blue.Borderless" />
 
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/buynewbtn"
+                            android:gravity="center"
+                            android:text="Buy New"
+                            android:theme="@style/Button.Blue.Borderless" />
                     </LinearLayout>
 
                     <com.google.android.flexbox.FlexboxLayout

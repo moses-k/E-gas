@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.refillgas"></activity>
+        <activity android:name=".Activities.shopping_cart"></activity>
+        <activity android:name=".Activities.buycylinder" />
+        <activity android:name=".Activities.refillgas" />
         <activity android:name=".Activities.registerPage" />
         <activity android:name=".Activities.refilgas" />
         <activity android:name=".Activities.dashboard" />

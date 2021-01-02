@@ -39,11 +39,11 @@ public class DataGenerator {
      * @param ctx android context
      * @return list of object
      */
-    public static List<GasProduct> getShoppingProduct(Context ctx) {
+    public static List<GasProduct> getShoppingProductnew6(Context ctx) {
         List<GasProduct> items = new ArrayList<>();
-        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_image);
-        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_title);
-        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price);
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_image6);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_title6);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_new6);
         for (int i = 0; i < drw_arr.length(); i++) {
             GasProduct obj = new GasProduct();
             obj.image = drw_arr.getResourceId(i, -1);
@@ -54,4 +54,81 @@ public class DataGenerator {
         }
         return items;
     }
+    public static List<GasProduct> getShoppingProductnew12(Context ctx) {
+        List<GasProduct> items = new ArrayList<>();
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_image12);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_title12);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_new12);
+        for (int i = 0; i < drw_arr.length(); i++) {
+            GasProduct obj = new GasProduct();
+            obj.image = drw_arr.getResourceId(i, -1);
+            obj.title = title_arr[i];
+            obj.price = price_arr[i];
+            obj.imageDrw = ctx.getResources().getDrawable(obj.image);
+            items.add(obj);
+        }
+        return items;
+    }
+    public static List<GasProduct> getShoppingProductnew(Context ctx) {
+        List<GasProduct> items = new ArrayList<>();
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_imageall);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_titleall);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_newall);
+        for (int i = 0; i < drw_arr.length(); i++) {
+            GasProduct obj = new GasProduct();
+            obj.image = drw_arr.getResourceId(i, -1);
+            obj.title = title_arr[i];
+            obj.price = price_arr[i];
+            obj.imageDrw = ctx.getResources().getDrawable(obj.image);
+            items.add(obj);
+        }
+        return items;
+    }
+    public static List<GasProduct> getShoppingProductrefill(Context ctx) {
+        List<GasProduct> items = new ArrayList<>();
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_imageall);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_titleall);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_refillall);
+        for (int i = 0; i < drw_arr.length(); i++) {
+            GasProduct obj = new GasProduct();
+            obj.image = drw_arr.getResourceId(i, -1);
+            obj.title = title_arr[i];
+            obj.price = price_arr[i];
+            obj.imageDrw = ctx.getResources().getDrawable(obj.image);
+            items.add(obj);
+        }
+        return items;
+    }
+    public static List<GasProduct> getShoppingProductrefill6(Context ctx) {
+        List<GasProduct> items = new ArrayList<>();
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_image6);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_title6);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_refill6);
+        for (int i = 0; i < drw_arr.length(); i++) {
+            GasProduct obj = new GasProduct();
+            obj.image = drw_arr.getResourceId(i, -1);
+            obj.title = title_arr[i];
+            obj.price = price_arr[i];
+            obj.imageDrw = ctx.getResources().getDrawable(obj.image);
+            items.add(obj);
+        }
+        return items;
+    }
+    public static List<GasProduct> getShoppingProductrefill12(Context ctx) {
+        List<GasProduct> items = new ArrayList<>();
+        TypedArray drw_arr = ctx.getResources().obtainTypedArray(R.array.shop_product_image12);
+        String title_arr[] = ctx.getResources().getStringArray(R.array.shop_product_title12);
+        String price_arr[] = ctx.getResources().getStringArray(R.array.shop_product_price_refill12);
+        for (int i = 0; i < drw_arr.length(); i++) {
+            GasProduct obj = new GasProduct();
+            obj.image = drw_arr.getResourceId(i, -1);
+            obj.title = title_arr[i];
+            obj.price = price_arr[i];
+            obj.imageDrw = ctx.getResources().getDrawable(obj.image);
+            items.add(obj);
+        }
+        return items;
+    }
+
+
 }

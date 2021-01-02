@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -55,8 +57,6 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         try{
-            makeText(this, "inside onCreate", LENGTH_SHORT).show();
-
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login_page);
             username = (TextInputEditText) findViewById(R.id.loginusername);
@@ -81,6 +81,30 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+    //check user if already loged in
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(loginPage.this); //Get the preferences
+        String name = prefs.getString("custref", "user"); //get a String
+        boolean rememberCredentials = prefs.getBoolean("rememberCredentials", true); //get a boolean.
+       //When the key "rememberCredentials" is not present, true is returned.
+
+        String userLoginStatus = prefs.getString("userLoginStatus", null);
+        if(userLoginStatus != null){
+            if(userLoginStatus.toString().equals("yes")){
+                Intent intent = new Intent(loginPage.this, dashboard.class);
+                startActivity(intent);
+                makeText(this, "user is logged in: "+ name , LENGTH_SHORT).show();
+
+            }else{
+                makeText(this, "user not logged in: ", LENGTH_SHORT).show();
+
+            }
+        }
+
+    }
+
     @Override
     public void onClick(View view)  {
         switch(view.getId()){
@@ -89,7 +113,7 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
                     UserLogin(view);
                 } catch (Exception e) {
                     makeText(this, "Exception in method onClick occurred: " + e, LENGTH_SHORT).show();
-                    Log.i(className, "Exception in method onClick occurred: " + e.getStackTrace());
+                    Log.i(className, "Exception in method onClick occurred: " + e.getMessage());
                 }
                 break;
 
@@ -144,21 +168,36 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
                 }
             makeText(getApplicationContext(), "good", LENGTH_SHORT).show();
 
-         //  boolean result =  sendLoginPost1(userName, userpass, userType );
             String requestType = "login";
             NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
-           // (String)UserLoginDao.class.getConstructor().newInstance().validateUser(userId, userPwd, userType);
-          //  String status = (String)NetworkAsynckHander.class.getConstructor().newInstance().execute(requestType, userName, userpass, userType);
             String res = networkRequest.execute(requestType, userName, userpass, userType).get();
             makeText(getApplicationContext(), "good : res is "+ res, LENGTH_SHORT).show();
-            if(res.equals("success")){
-                Intent intent = new Intent(loginPage.this, dashboard.class);
-                startActivity(intent);
-            }else {
-                makeText(getApplicationContext(), "login failed... Userid/Password incorrect ", LENGTH_SHORT).show();
+
+            if(res !=null){
+                String [] arrRes = res.split(",");
+                String result = arrRes[0];
+                if(result.equals("success")){
+                    String custref = arrRes[1];
+                    String custuserid = arrRes[2];
+                    String usercontact = arrRes[3];
+
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(loginPage.this); //Get the preferences
+                    SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preferences
+                    edit.putString("custref", custref);  //add a String
+                    edit.putString("custuserid", custuserid);  //add a String
+                    edit.putString("usercontact", usercontact);  //add a String
+                    edit.putString("userLoginStatus", "yes");  //add a String
+                    edit.putBoolean("rememberCredentials", true); //add a boolean
+                    edit.commit();  // save the edits.
+
+                    Intent intent = new Intent(loginPage.this, dashboard.class);
+                    startActivity(intent);
+                }else {
+                    makeText(getApplicationContext(), "login failed... Userid/Password incorrect ", LENGTH_SHORT).show();
+                }
+            }else{
+                makeText(getApplicationContext(), "An Error occurred:  ", LENGTH_SHORT).show();
             }
-
-
 
             // testservlet();
 

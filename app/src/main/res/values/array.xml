@@ -275,47 +275,110 @@
         <item>221k Items</item>
         <item>85k Items</item>
         <item>725k Items</item>
-
         <item>932k Items</item>
         <item>475k Items</item>
         <item>362k Items</item>
     </string-array>
 
-    <!--shopping product data-->
-    <integer-array name="shop_product_image">
-        <item>@drawable/image_shop_1</item>
-        <item>@drawable/image_shop_2</item>
-        <item>@drawable/image_shop_3</item>
-        <item>@drawable/image_shop_4</item>
-        <item>@drawable/image_shop_5</item>
-
-        <item>@drawable/image_shop_6</item>
-        <item>@drawable/image_shop_7</item>
-        <item>@drawable/image_shop_8</item>
+    <!--shopping product data 6 kg-->
+    <integer-array name="shop_product_image6">
+        <item>@drawable/totalsmal</item>
+        <item>@drawable/hashsmall</item>
+        <item>@drawable/supagassmall</item>
+        <item>@drawable/prolarge</item>
     </integer-array>
 
-    <string-array name="shop_product_title">
-        <item>Fashion B07 Keara 933</item>
-        <item>Coup Hoodie Jacket</item>
-        <item>Gala Suede Jacket Flower</item>
-        <item>Qonnoq Checked Blouse</item>
-        <item>Java Seven Belladji 674</item>
+    <!--shopping product data 12 kg-->
+    <integer-array name="shop_product_image12">
+        <item>@drawable/totallarge</item>
+        <item>@drawable/hashlarge</item>
+        <item>@drawable/supergaslarge</item>
+        <item>@drawable/prolarge</item>
+        <item>@drawable/totallarge2</item>
+    </integer-array>
+    <!--shopping product data all-->
+    <integer-array name="shop_product_imageall">
+        <item>@drawable/totalsmal</item>
+        <item>@drawable/totallarge</item>
+        <item>@drawable/hashsmall</item>
+        <item>@drawable/hashlarge</item>
+        <item>@drawable/supagassmall</item>
+        <item>@drawable/supergaslarge</item>
+        <item>@drawable/prolarge</item>
+        <item>@drawable/totallarge2</item>
+    </integer-array>
 
-        <item>Kanvas Sneaker Shoes</item>
-        <item>Clarks Idamarie Faye Lea</item>
-        <item>Piero Rush Women</item>
+    <string-array name="shop_product_title6">
+        <item>Total gas 6Kg</item>
+        <item>Hashi 6Kg</item>
+        <item>Supa Gas 6Kg</item>
+        <item>Pro Gas 6Kg</item>
     </string-array>
 
-    <string-array name="shop_product_price">
-        <item>$ 48.90</item>
-        <item>$ 89.00</item>
-        <item>$ 66.80</item>
-        <item>$ 34.50</item>
-        <item>$ 44.90</item>
+    <string-array name="shop_product_title12">
+        <item>Total gas 12Kg</item>
+        <item>Hashi 12Kg</item>
+        <item>Supa Gas 12Kg</item>
+        <item>Pro Gas 12Kg </item>
+        <item>Total gas 12Kg</item>
+    </string-array>
+    <string-array name="shop_product_titleall">
+        <item>Total gas 6Kg</item>
+        <item>Total gas 12Kg</item>
+        <item>Hashi 6Kg</item>
+        <item>Hashi 12Kg</item>
+        <item>Supa Gas 6Kg</item>
+        <item>Supa Gas 12Kg</item>
+        <item>Pro Gas 12Kg </item>
+        <item>Pro Gas 6Kg</item>
+    </string-array>
 
-        <item>$ 59.00</item>
-        <item>$ 78.20</item>
-        <item>$ 96.00</item>
+    <string-array name="shop_product_price_refill6">
+        <item>Ksh 1,000</item>
+        <item>Ksh 900</item>
+        <item>Ksh 850</item>
+        <item>Ksh 800</item>
+    </string-array>
+    <string-array name="shop_product_price_refill12">
+        <item>Ksh 1800</item>
+        <item>Ksh 1,700</item>
+        <item>Ksh 1,600</item>
+        <item>Ksh 1,500</item>
+        <item>Ksh 1800</item>
+    </string-array>
+    <string-array name="shop_product_price_refillall">
+        <item>Ksh 1,000.00</item>
+        <item>Ksh 1800</item>
+        <item>Ksh 900</item>
+        <item>Ksh 1,700</item>
+        <item>Ksh 850</item>
+        <item>Ksh 1,600</item>
+        <item>Ksh 800</item>
+        <item>Ksh 1,500</item>
+    </string-array>
+
+    <string-array name="shop_product_price_new6">
+        <item>Ksh 6,000.00</item>
+        <item>Ksh 5,500</item>
+        <item>Ksh 5,000</item>
+        <item>Ksh 4,500</item>
+    </string-array>
+    <string-array name="shop_product_price_new12">
+        <item>Ksh 12,000</item>
+        <item>Ksh 10,000</item>
+        <item>Ksh 9,000</item>
+        <item>Ksh 8,500</item>
+        <item>Ksh 12,000</item>
+    </string-array>
+    <string-array name="shop_product_price_newall">
+        <item>Ksh 6,000.00</item>
+        <item>Ksh 12,000</item>
+        <item>Ksh 5,500</item>
+        <item>Ksh 10,000</item>
+        <item>Ksh 5,000</item>
+        <item>Ksh 9,000</item>
+        <item>Ksh 4,500</item>
+        <item>Ksh 8,500</item>
     </string-array>
 
     <!--music data-->

@@ -3,15 +3,20 @@ package com.moscom.egas.Network;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.moscom.egas.Activities.dashboard;
 import com.moscom.egas.Activities.loginPage;
+import com.moscom.egas.adapter.AdapterGridShopProductCard;
 import com.moscom.egas.environment.EgasEnvironment;
+import com.moscom.egas.fragment.FragmentProductGrid;
 
 import org.json.JSONObject;
 
@@ -38,14 +43,25 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
     public NetworkAsynckHander(Context ctx) {
         context = ctx;
     }
+    FragmentProductGrid context2;
+    AdapterGridShopProductCard.OnMoreButtonClickListener context3;
+    public NetworkAsynckHander(FragmentProductGrid fragmentProductGrid) {
+        context2 = fragmentProductGrid;
+    }
+
+    public NetworkAsynckHander(AdapterGridShopProductCard.OnMoreButtonClickListener onMoreButtonClickListener) {
+        context3 = onMoreButtonClickListener;
+    }
+
     @Override
     protected String doInBackground(String... params) {
+        String jsonResponse = null; Request request = null; Response response = null;
         String requestType = params[0];
         switch (requestType){
             case "login":
-                String result  = null; String json = null; String url = null; Request request = null; RequestBody body = null;
-                String printRequestBody = null;String jsonResponse = null; RequestBody formBody = null;
-                Response response = null;
+                String result  = null; String json = null; String url = null;  RequestBody body = null;
+                String printRequestBody = null; RequestBody formBody = null;
+
                 String userName = params[1];
                 String userPassword = params[2];
                 String userType = params[3];
@@ -91,7 +107,24 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                         JsonObject jsonObj = new Gson().fromJson(jsonResponse, JsonObject.class);
                         String error =  jsonObj.get("error").toString().replaceAll("\"", "");
                         if (error.equals("false")){
-                            result = "success";
+                            String custref = jsonObj.get("custrefno").toString().replaceAll("\"", "");
+                            String custuserid = jsonObj.get("custuserid").toString().replaceAll("\"", "");
+                            String usercontact = jsonObj.get("usercontact").toString().replaceAll("\"", "");
+
+//                            SharedPreferences prefs = getSharedPreferences("logindetail", 0);
+//                            SharedPreferences.Editor edit = prefs.edit();
+//                            edit.putString("userLoginStatus", "yes");
+//                            edit.commit();
+
+//                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(NetworkAsynckHander.this); //Get the preferences
+//                            SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preferences
+//                            edit.putString("name", "myname");  //add a String
+//                            edit.putBoolean("rememberCredentials", true); //add a boolean
+//                            edit.commit();  // save the edits.s
+
+
+
+                            result = "success"+","+custref+ ","+custuserid+","+usercontact;
                             Log.i(className, "success:  jsonResponse is : "+ jsonResponse );
                             // alertDialog.setMessage("Login success : "+ jsonResponse );
                            // alertDialog.show();
@@ -109,7 +142,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                             Log.i(className, "fail:  jsonResponse is : "+ jsonResponse );
                             result = "failed";
 
-                        }else if(error.equals("invaliduserid")){
+                        }else if(error.equals("s")){
                             Log.i(className, "fail:  jsonResponse is : "+ jsonResponse );
                             result = "failed";
 
@@ -124,7 +157,13 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                         throw  new Exception("No response");
                     }
                    //  makeText(this, "inside everything seems good : "+ printRequestBody+"  "+ jsonResponse , LENGTH_SHORT).show();
-                    return  result;
+                    try{
+                        return  result;
+                    }finally {
+                        if(jsonResponse !=null)  jsonResponse = null; if(response !=null)  response = null;
+                        if(request !=null)  request = null;
+                    }
+
                 }catch(Exception e){
                     Log.i(className, "Exception in method sendLoginPost1 occurred : "+ e.getMessage());
                   //  alertDialog.setMessage("Exception in method sendLoginPost1 occurred : "+ e.getMessage() );
@@ -132,13 +171,149 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                    // Toast.makeText(this, "Exception in method sendLoginPost1 occurred : "+formBody.toString() + " "+printRequestBody +" "+ jsonResponse+ " " +  e.getMessage(), LENGTH_SHORT).show();
                 }
                 break;
+
+            case "getproducts":
+               // String result  = null; String json = null; String url = null; Request request = null; RequestBody body = null;
+               // String printRequestBody = null; RequestBody formBody = null;
+                Response response1 = null; String jsonResponse1 = null; String arrProducts = null;
+
+                try{
+                    url = EgasEnvironment.getJsonServer();
+                    JSONObject jsonParam = new JSONObject();
+                    JSONObject jsonParam1 = new JSONObject();
+                    jsonParam.put("actioncode", EgasEnvironment.getJsonRequests());
+                    jsonParam.put("funcode", "getproducts");
+                    jsonParam1.put("Body", jsonParam);
+                    json   = jsonParam1.toString();
+                    //{ "Body":{ "actioncode": "json","funcode":"getproducts" } }
+
+                    OkHttpClient client = new OkHttpClient();
+                    body = RequestBody.Companion.create(json, JSON);
+                    request = new Request.Builder()
+                            .url(url)
+                            .post(body)
+                            .build();
+                    try {
+                        response1 = client.newCall(request).execute();
+                        jsonResponse1 = response1.body().string();
+                    } catch (Exception e) {
+                        Log.i(className, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse1 +"  " + e.getMessage());
+                        //alertDialog.setMessage("Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage());
+                        ///alertDialog.show();
+                        //  makeText(this, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage(), LENGTH_SHORT).show();
+                    }
+                    // jsonResponse = response.body().string();
+                    printRequestBody = bodyToString(body);
+                    if(jsonResponse1 !=null){
+                        // makeText(this, "jsonResponse is : " + jsonResponse, LENGTH_SHORT).show();
+                        JsonObject jsonObj = new Gson().fromJson(jsonResponse1, JsonObject.class);
+                        String error =  jsonObj.get("error").toString().replaceAll("\"", "");
+                        if (error.equals("false")){
+                             arrProducts =  jsonObj.get("arrproducts").toString().replaceAll("\"", "");
+
+                            result = arrProducts;
+                            Log.i(className, "products fetched successfully:  arrProducts is : "+ arrProducts );
+                            // alertDialog.setMessage("Login success : "+ jsonResponse );
+                            // alertDialog.show();
+
+                            //  Intent intent = new Intent(NetworkAsynckHander.this, dashboard.class);
+                            // startActivity(intent);
+                            //  makeText(this, "Login success : " + jsonResponse, LENGTH_SHORT).show();
+                        }else  if (error.equals("true")) {
+                            Log.i(className, "fail:  jsonResponse is : "+ jsonResponse1 );
+                            arrProducts = "failed";
+                            //  alertDialog.setMessage("Login failed : "+ jsonResponse );
+                            // alertDialog.show();
+                            //makeText(this, "Login failed : " + jsonResponse, LENGTH_SHORT).show();
+                        }
+                    }else{
+                        // Toast.makeText(NetworkAsynckHander.this, "No response : " , LENGTH_SHORT).show();
+                        //  alertDialog.setMessage("No response " );
+                        // alertDialog.show();
+                        throw  new Exception("No response");
+                    }
+                    //  makeText(this, "inside everything seems good : "+ printRequestBody+"  "+ jsonResponse , LENGTH_SHORT).show();
+
+                    try{
+                        return  arrProducts;
+                    }finally {
+                        if(jsonResponse !=null)  jsonResponse = null; if(response !=null)  response = null;
+                        if(request !=null)  request = null;
+                    }
+                }catch(Exception e){
+                    Log.i(className, "Exception in getproducts occurred : "+ e.getMessage());
+                    //  alertDialog.setMessage("Exception in method sendLoginPost1 occurred : "+ e.getMessage() );
+                    // alertDialog.show();
+                    // Toast.makeText(this, "Exception in method sendLoginPost1 occurred : "+formBody.toString() + " "+printRequestBody +" "+ jsonResponse+ " " +  e.getMessage(), LENGTH_SHORT).show();
+                }
+                break;
+
+            case "addcart":
+                try{
+                    String result1 = null;  String productNAme = params[1];   String productPrice = params[2]; //Ksh 800
+                    String [] arrPrice = productPrice.split(" ");
+                    productPrice = arrPrice[1].replace(",", ""); //1,000 to 1000
+
+                    url = EgasEnvironment.getJsonServer();
+                    JSONObject jsonParam = new JSONObject();
+                    JSONObject jsonParam1 = new JSONObject();
+                    jsonParam.put("actioncode", EgasEnvironment.getJsonRequests());
+                    jsonParam.put("funcode", "addcart");
+                    jsonParam.put("productname", productNAme);
+                    jsonParam.put("price", productPrice);
+                    jsonParam1.put("Body", jsonParam);
+                    json   = jsonParam1.toString();
+                    //{ "Body":{ "actioncode": "json","funcode":"getproducts" } }
+
+                    OkHttpClient client = new OkHttpClient();
+                    body = RequestBody.Companion.create(json, JSON);
+                    request = new Request.Builder()
+                            .url(url)
+                            .post(body)
+                            .build();
+                    try {
+                        response1 = client.newCall(request).execute();
+                        jsonResponse = response1.body().string();
+                    } catch (Exception e) {
+                        Log.i(className, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage());
+                        //  makeText(this, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage(), LENGTH_SHORT).show();
+                    }
+                    if(jsonResponse !=null){
+                        // makeText(this, "jsonResponse is : " + jsonResponse, LENGTH_SHORT).show();
+                        JsonObject jsonObj = new Gson().fromJson(jsonResponse, JsonObject.class);
+                        String error =  jsonObj.get("error").toString().replaceAll("\"", "");
+                        if (error.equals("false")){
+                            result1 = "success";
+                            Log.i(className, "products fetched successfully:  arrProducts is : " );
+
+                        }else  if (error.equals("true")) {
+                            result1 = "failed";
+                            Log.i(className, "fail:  jsonResponse is : "+ jsonResponse );
+                        }
+                    }else{
+                        throw  new Exception("No response");
+                    }
+                    //  makeText(this, "inside everything seems good : "+ printRequestBody+"  "+ jsonResponse , LENGTH_SHORT).show();
+                    try{
+                        return  result1;
+                    }finally {
+                        if(jsonResponse !=null)  jsonResponse = null; if(response !=null)  response = null;
+                        if(request !=null)  request = null;
+                    }
+                }catch(Exception e){
+                    Log.i(className, "Exception in adding to cart occurred : "+ e.getMessage());
+                }
+                break;
+
         }
         return null;
     }
+
+
     @Override
     protected void onPreExecute () {
-        alertDialog = new AlertDialog.Builder( context ).create();
-       alertDialog.setTitle( "Login Status" );
+//        alertDialog = new AlertDialog.Builder( context ).create();
+     //  alertDialog.setTitle( "Login Status" );
 
     }
 

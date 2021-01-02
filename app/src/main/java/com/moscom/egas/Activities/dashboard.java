@@ -21,6 +21,7 @@ public class dashboard extends AppCompatActivity  implements View.OnClickListene
         setContentView(R.layout.activity_dashboard);
 
         findViewById(R.id.refilbtn).setOnClickListener(this);
+        findViewById(R.id.buynewbtn).setOnClickListener(this);
     }
 
     @Override
@@ -31,7 +32,15 @@ public class dashboard extends AppCompatActivity  implements View.OnClickListene
                     Intent intent = new Intent(dashboard.this, refillgas.class);
                     startActivity(intent);
                 }catch (Exception e){
-                    Log.i(className, "Exception in method onClick occurred: " + e.getMessage());
+                    Log.i(className, "Exception in method onClick refilbtn occurred: " + e.getMessage());
+                }
+                break;
+            case R.id.buynewbtn:
+                try {
+                    Intent intent = new Intent(dashboard.this, buycylinder.class);
+                    startActivity(intent);
+                }catch (Exception e){
+                    Log.i(className, "Exception in method onClick buynewbtn occurred: " + e.getMessage());
                 }
                 break;
 

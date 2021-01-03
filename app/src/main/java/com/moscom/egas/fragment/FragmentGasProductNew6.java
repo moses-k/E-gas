@@ -1,6 +1,8 @@
 package com.moscom.egas.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,6 +21,10 @@ import com.moscom.egas.model.GasProduct;
 import com.moscom.egas.utilities.DataGenerator;
 import com.moscom.egas.utilities.Tools;
 import com.moscom.egas.widget.SpacingItemDecoration;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Collections;
 import java.util.List;
@@ -87,29 +93,69 @@ public class FragmentGasProductNew6 extends Fragment {
                 Snackbar.make(root, obj.title + " (" + item.getTitle() + ") clicked", Snackbar.LENGTH_SHORT).show();
                 String name = obj.title;
                 String price = obj.price;
-                String requestType = "addcart";
-                try {
-                    NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
-                    String result = networkRequest.execute(requestType, name, price).get();
-                    if(result !=null){
-                        if(result.equals("success")){
-                            Log.i(className, "products " + obj.title + " added to cart");
-                            Snackbar.make(root, "products " + obj.title + " added to cart", Snackbar.LENGTH_SHORT).show();
+                String[] arrprice = price.split(" ");
+                price = arrprice[1].replace(",","");
 
-                        }else {
-                            Log.i(className, "failed to add to cart,  product: " + obj.title + " ");
-                            Snackbar.make(root, "failed to add to cart " + obj.title + " ", Snackbar.LENGTH_SHORT).show();
+                //String requestType = "addcart";
+                try {
+                    // NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
+                    //String result = networkRequest.execute(requestType, name, price).get();
+                    //store the cart details in the SharedPreferences
+                    int carttotal  = 0;
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext()); //Get the preferences
+                    String cartprod = prefs.getString("cartprod", null);
+                    JSONObject obj1 = null;
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("name", name);
+                    jsonParam.put("price", price);
+                    jsonParam.put("type", "new");
+
+                    if(cartprod !=null){ // append the json object\
+                        carttotal = Integer.parseInt(prefs.getString("carttotal", null) ) ;
+                        carttotal = carttotal + Integer.parseInt(price);
+                        obj1 = new JSONObject(cartprod);
+                        JSONArray arr = (JSONArray) obj1.get("cart");
+                        arr.put(jsonParam);
+                        Log.i(className, "prodDetailsArr legth  " + arr.length() +arr);
+
+                    }else{ //create new json array
+                        carttotal = Integer.parseInt(price);
+                        JSONArray jsonarr = new JSONArray();
+                        jsonarr.put(jsonParam);
+                        obj1 = new JSONObject();
+                        obj1.put("cart", jsonarr);
+                    }
+
+                    SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preferences
+                    edit.putString("cartprod", obj1.toString());  //add a String
+                    edit.putString("carttotal", String.valueOf(carttotal));  //add a String
+                    edit.commit();  // save the edits.
+
+                    cartprod = prefs.getString("cartprod", null);
+
+                    //JSONArray jsonarray = new JSONArray(cartprod);
+                    JSONArray jsonarray = (JSONArray) new JSONObject(cartprod).get("cart");
+                    String addedToCart = null;
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        JSONObject jsonobject = jsonarray.getJSONObject(i);
+                        String productName = jsonobject.getString("name");
+                        Log.i(className, "productName  " + i+ " " +productName +cartprod);
+                        if(productName .equals(name)){
+                            addedToCart = obj.title ;
                         }
+                    }
+
+                    if(addedToCart !=null){
+                        Log.i(className, "products " + obj.title + " added to cart" +cartprod);
+                        Snackbar.make(root, "products " + obj.title + " added to cart", Snackbar.LENGTH_SHORT).show();
                     }else{
+                        Snackbar.make(root, "An error occured: No response", Snackbar.LENGTH_SHORT).show();
                         Log.i(className, "An error occured: No response ");
                     }
 
-                } catch (ExecutionException e) {
-                    Log.i(className, "Exception in adding cart is : "+ e.getMessage());
-                    // e.printStackTrace();
-                } catch (InterruptedException e) {
-                    Log.i(className, "Exception in adding cart is : "+ e.getMessage());
-                    // e.printStackTrace();
+                } catch (JSONException e) {
+                    Log.i(className, "Exception in storing order details in sharedpreference is "+ e.getMessage());
+                    Snackbar.make(root, "An error occured", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

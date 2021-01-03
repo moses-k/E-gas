@@ -76,7 +76,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_small"
-                                    android:text="$ 89.00"
+                                    android:text="Ksh 8900"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                     android:textColor="@color/light_green_600"
                                     android:textStyle="bold" />

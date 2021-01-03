@@ -125,6 +125,13 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
     }
     public void UserLogin(View view) throws Exception {
         if (!NetworkCheck.isConnect(loginPage.this)) buildDialog(loginPage.this).show();
+
+
+//        showSnackBar(this, "No internet")
+//        showSnackBar(this, "No internet", duration = Snackbar.LENGTH_LONG)
+//        showSnackBar(activity, "No internet", "OK", View.OnClickListener {
+//            // handle click
+        //})
         else {
             String userName = null; String userpass =null;   String userType = null; String response = null;
            // try{
@@ -171,9 +178,8 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
             String requestType = "login";
             NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
             String res = networkRequest.execute(requestType, userName, userpass, userType).get();
-            makeText(getApplicationContext(), "good : res is "+ res, LENGTH_SHORT).show();
-
             if(res !=null){
+                makeText(getApplicationContext(), "good : res is "+ res, LENGTH_SHORT).show();
                 String [] arrRes = res.split(",");
                 String result = arrRes[0];
                 if(result.equals("success")){

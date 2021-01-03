@@ -280,6 +280,111 @@
         <item>362k Items</item>
     </string-array>
 
+    <integer-array name="shop_product_totalsmal">
+        <item>@drawable/totalsmal</item>
+    </integer-array>
+    <string-array name="shop_product_totalsmaltitle">
+        <item>Total gas 6Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_totalsmal">
+        <item>Ksh 1,000</item>
+    </string-array>
+    <string-array name="shop_product_price_totalsmalnew">
+        <item>Ksh 6,000</item>
+    </string-array>
+
+
+    <integer-array name="shop_product_totallarge">
+        <item>@drawable/totallarge</item>
+    </integer-array>
+    <string-array name="shop_product_totallargetitle">
+        <item>Total gas 12Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_totallarge">
+        <item>Ksh 1,800</item>
+    </string-array>
+    <string-array name="shop_product_price_totallargenew">
+        <item>Ksh 12,000</item>
+    </string-array>
+
+    <integer-array name="shop_product_hashismal">
+        <item>@drawable/hashsmall</item>
+    </integer-array>
+    <string-array name="shop_product_hashismaltitle">
+        <item>Hashi 6Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_hashismal">
+        <item>Ksh 900</item>
+    </string-array>
+    <string-array name="shop_product_price_hashismalnew">
+        <item>Ksh 5,500</item>
+    </string-array>
+
+    <integer-array name="shop_product_hashilarge">
+        <item>@drawable/hashlarge</item>
+    </integer-array>
+    <string-array name="shop_product_hashilargetitle">
+        <item>Hashi gas 12Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_hashilarge">
+        <item>Ksh 1,700</item>
+    </string-array>
+    <string-array name="shop_product_price_hashilargenew">
+        <item>Ksh 10,000</item>
+    </string-array>
+
+    <integer-array name="shop_product_supasmal">
+        <item>@drawable/supagassmall</item>
+    </integer-array>
+    <string-array name="shop_product_supasmaltitle">
+        <item>Supa Gas 6Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_supasmal">
+        <item>Ksh 850</item>
+    </string-array>
+    <string-array name="shop_product_price_supasmalnew">
+        <item>Ksh 5,000</item>
+    </string-array>
+
+    <integer-array name="shop_product_supalarge">
+        <item>@drawable/hashlarge</item>
+    </integer-array>
+    <string-array name="shop_product_supalargetitle">
+        <item>Supa Gas 12Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_supalarge">
+        <item>Ksh 1,600</item>
+    </string-array>
+    <string-array name="shop_product_price_supalargenew">
+        <item>Ksh 9,000</item>
+    </string-array>
+
+    <integer-array name="shop_product_prosmal">
+        <item>@drawable/prolarge</item>
+    </integer-array>
+    <string-array name="shop_product_prosmaltitle">
+        <item>Pro Gas 6Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_prosmal">
+        <item>Ksh 800</item>
+    </string-array>
+    <string-array name="shop_product_price_prosmalnew">
+        <item>Ksh 4,500</item>
+    </string-array>
+
+    <integer-array name="shop_product_prolarge">
+        <item>@drawable/prolarge</item>
+    </integer-array>
+    <string-array name="shop_product_prolargetitle">
+        <item>Pro Gas 12Kg</item>
+    </string-array>
+    <string-array name="shop_product_price_prolarge">
+        <item>Ksh 1,500</item>
+    </string-array>
+    <string-array name="shop_product_price_prolargenew">
+        <item>Ksh 8,500</item>
+    </string-array>
+
     <!--shopping product data 6 kg-->
     <integer-array name="shop_product_image6">
         <item>@drawable/totalsmal</item>
@@ -340,15 +445,15 @@
         <item>Ksh 800</item>
     </string-array>
     <string-array name="shop_product_price_refill12">
-        <item>Ksh 1800</item>
+        <item>Ksh 1,800</item>
         <item>Ksh 1,700</item>
         <item>Ksh 1,600</item>
         <item>Ksh 1,500</item>
-        <item>Ksh 1800</item>
+        <item>Ksh 1,800</item>
     </string-array>
     <string-array name="shop_product_price_refillall">
-        <item>Ksh 1,000.00</item>
-        <item>Ksh 1800</item>
+        <item>Ksh 1,000</item>
+        <item>Ksh 1,800</item>
         <item>Ksh 900</item>
         <item>Ksh 1,700</item>
         <item>Ksh 850</item>
@@ -356,9 +461,8 @@
         <item>Ksh 800</item>
         <item>Ksh 1,500</item>
     </string-array>
-
     <string-array name="shop_product_price_new6">
-        <item>Ksh 6,000.00</item>
+        <item>Ksh 6,000</item>
         <item>Ksh 5,500</item>
         <item>Ksh 5,000</item>
         <item>Ksh 4,500</item>
@@ -371,7 +475,7 @@
         <item>Ksh 12,000</item>
     </string-array>
     <string-array name="shop_product_price_newall">
-        <item>Ksh 6,000.00</item>
+        <item>Ksh 6,000</item>
         <item>Ksh 12,000</item>
         <item>Ksh 5,500</item>
         <item>Ksh 10,000</item>

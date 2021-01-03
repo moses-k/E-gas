@@ -161,7 +161,7 @@
                         android:clickable="true"
                         android:text="Sign Up"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/colorPrimaryLight"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold" />
 
                 </LinearLayout>

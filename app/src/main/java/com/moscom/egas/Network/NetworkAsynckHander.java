@@ -1,7 +1,9 @@
 package com.moscom.egas.Network;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -14,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.moscom.egas.Activities.dashboard;
 import com.moscom.egas.Activities.loginPage;
+import com.moscom.egas.R;
 import com.moscom.egas.adapter.AdapterGridShopProductCard;
 import com.moscom.egas.environment.EgasEnvironment;
 import com.moscom.egas.fragment.FragmentProductGrid;
@@ -29,6 +32,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
+import static android.provider.Settings.System.getString;
 import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 
@@ -37,12 +41,16 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
     public static final MediaType JSON   = MediaType.get("application/json; charset=utf-8");
     private static final int LENGTH_SHORT = 0;
     public static final int LENGTH_LONG = 1;
+    //ProgressDialog asyncDialog = new ProgressDialog(NetworkAsynckHander.this);
+
 
     Context context;
     AlertDialog alertDialog;
     public NetworkAsynckHander(Context ctx) {
         context = ctx;
+
     }
+
     FragmentProductGrid context2;
     AdapterGridShopProductCard.OnMoreButtonClickListener context3;
     public NetworkAsynckHander(FragmentProductGrid fragmentProductGrid) {
@@ -52,6 +60,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
     public NetworkAsynckHander(AdapterGridShopProductCard.OnMoreButtonClickListener onMoreButtonClickListener) {
         context3 = onMoreButtonClickListener;
     }
+
 
     @Override
     protected String doInBackground(String... params) {
@@ -309,18 +318,20 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
         return null;
     }
 
-
     @Override
     protected void onPreExecute () {
-//        alertDialog = new AlertDialog.Builder( context ).create();
-     //  alertDialog.setTitle( "Login Status" );
 
+        //set message of the dialog
+      //  asyncDialog.setMessage("Loading");
+        //show dialog
+       //asyncDialog.show();
+        super.onPreExecute();
     }
 
     @Override
     protected void onPostExecute(String result) {
-       // alertDialog.setMessage(result);
-       // alertDialog.show();
+        //hide the dialog
+        //asyncDialog.dismiss();
     }
 
     @Override

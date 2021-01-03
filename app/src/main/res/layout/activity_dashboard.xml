@@ -14,7 +14,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:background="@color/blue_400" />
+            android:background="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -205,10 +205,9 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:tint="@color/red_300"
-                            app:srcCompat="@drawable/ic_totalgas" />
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:srcCompat="@drawable/hashsmall" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -361,7 +360,7 @@
                 android:layout_marginLeft="@dimen/spacing_large"
                 android:layout_marginRight="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_small"
-                app:cardBackgroundColor="@color/blue_400"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">

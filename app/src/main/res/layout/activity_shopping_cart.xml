@@ -70,9 +70,10 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/carttotalprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$ 210.50"
+                android:text="Ksh 210.50"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/light_green_700"
                 android:textStyle="bold" />
@@ -84,9 +85,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentBottom="true"
-            android:background="@color/blue_600">
+            android:background="@color/colorPrimaryDark">
 
             <TextView
+                android:id="@+id/checkout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

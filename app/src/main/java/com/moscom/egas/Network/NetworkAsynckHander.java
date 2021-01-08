@@ -16,14 +16,20 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.moscom.egas.Activities.dashboard;
 import com.moscom.egas.Activities.loginPage;
+import com.moscom.egas.Activities.shopping_checkout;
 import com.moscom.egas.R;
 import com.moscom.egas.adapter.AdapterGridShopProductCard;
 import com.moscom.egas.environment.EgasEnvironment;
 import com.moscom.egas.fragment.FragmentProductGrid;
+import com.moscom.egas.model.GasProduct;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -37,7 +43,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 
 public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
-    private static final String className = loginPage.class.getSimpleName();
+    private static final String className = NetworkAsynckHander.class.getSimpleName();
     public static final MediaType JSON   = MediaType.get("application/json; charset=utf-8");
     private static final int LENGTH_SHORT = 0;
     public static final int LENGTH_LONG = 1;
@@ -262,7 +268,8 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                     String result1 = null;  String productNAme = params[1];   String productPrice = params[2]; //Ksh 800
                     String [] arrPrice = productPrice.split(" ");
                     productPrice = arrPrice[1].replace(",", ""); //1,000 to 1000
-
+                    String userContact = params[3];
+                    String orderNumber = params[4];
                     url = EgasEnvironment.getJsonServer();
                     JSONObject jsonParam = new JSONObject();
                     JSONObject jsonParam1 = new JSONObject();
@@ -270,6 +277,8 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                     jsonParam.put("funcode", "addcart");
                     jsonParam.put("productname", productNAme);
                     jsonParam.put("price", productPrice);
+                    jsonParam.put("usercontact", userContact);
+                    jsonParam.put("ordernumber", orderNumber);
                     jsonParam1.put("Body", jsonParam);
                     json   = jsonParam1.toString();
                     //{ "Body":{ "actioncode": "json","funcode":"getproducts" } }
@@ -293,7 +302,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                         String error =  jsonObj.get("error").toString().replaceAll("\"", "");
                         if (error.equals("false")){
                             result1 = "success";
-                            Log.i(className, "products fetched successfully:  arrProducts is : " );
+                            Log.i(className, "products fetched successfully:   " );
 
                         }else  if (error.equals("true")) {
                             result1 = "failed";
@@ -311,6 +320,73 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                     }
                 }catch(Exception e){
                     Log.i(className, "Exception in adding to cart occurred : "+ e.getMessage());
+                }
+                break;
+            case "mpesapayment":
+                try{
+                    String result1 = null;  String mpesaAmount = params[1];   String custref = params[2]; //Ksh 800
+                    String phoneNumber = params[3]; String jsoncart = params[4]; String orderNumber = params[5];
+
+                    //String [] arrmpesaAmount = mpesaAmount.split(" ");
+                    //mpesaAmount = arrmpesaAmount[1].replace(",", ""); //1,000 to 1000
+
+                    ArrayList<GasProduct> arrproducts = new ArrayList<>();
+                    Log.i(className, "json mpesaAmount is : "+ mpesaAmount + " custref is : "+ custref + " phoneNumber is : "+ phoneNumber
+                            + " jsoncart is : "+ jsoncart);
+
+                    url = EgasEnvironment.getJsonServer();
+                    JSONObject jsonParam = new JSONObject();
+                    JSONObject jsonParam1 = new JSONObject();
+                    jsonParam.put("actioncode", EgasEnvironment.getJsonRequests());
+                    jsonParam.put("funcode", "mpesapayment");
+                    jsonParam.put("phonenumber", phoneNumber);
+                    jsonParam.put("mpesaamount", mpesaAmount);
+                    jsonParam.put("custref", custref);
+                   jsonParam.put("jsoncart", jsoncart);
+                   jsonParam.put("ordernumber", orderNumber);
+                    jsonParam1.put("Body", jsonParam);
+                    json   = jsonParam1.toString();
+                    //{ "Body":{ "actioncode": "json","funcode":"getproducts" } }
+                   // Log.i(className, "json Request is : "+ json);
+
+                    OkHttpClient client = new OkHttpClient();
+                    body = RequestBody.Companion.create(json, JSON);
+                    request = new Request.Builder()
+                            .url(url)
+                            .post(body)
+                            .build();
+                    try {
+                        response1 = client.newCall(request).execute();
+                        jsonResponse = response1.body().string();
+                    } catch (Exception e) {
+                        Log.i(className, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage());
+                        //  makeText(this, "Exception  in getting Response:  jsonResponse is : "+ jsonResponse +"  " + e.getMessage(), LENGTH_SHORT).show();
+                    }
+                    if(jsonResponse !=null){
+                        // makeText(this, "jsonResponse is : " + jsonResponse, LENGTH_SHORT).show();
+                        JsonObject jsonObj = new Gson().fromJson(jsonResponse, JsonObject.class);
+                        String error =  jsonObj.get("error").toString().replaceAll("\"", "");
+                        if (error.equals("false")){
+
+                            result1 = "success";
+                            Log.i(className, "payment success : " + jsonResponse);
+
+                        }else  if (error.equals("true")) {
+                            result1 = "failed";
+                            Log.i(className, "payment success:  jsonResponse is : "+ jsonResponse );
+                        }
+                    }else{
+                        throw  new Exception("No response");
+                    }
+                    //  makeText(this, "inside everything seems good : "+ printRequestBody+"  "+ jsonResponse , LENGTH_SHORT).show();
+                    try{
+                        return  result1;
+                    }finally {
+                        if(jsonResponse !=null)  jsonResponse = null; if(response !=null)  response = null;
+                        if(request !=null)  request = null;
+                    }
+                }catch(Exception e){
+                    Log.i(className, "Exception in mpesa payment : "+ e.getMessage());
                 }
                 break;
 

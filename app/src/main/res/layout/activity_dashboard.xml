@@ -46,19 +46,22 @@
                     app:srcCompat="@drawable/logo_small_round" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+
                     android:layout_marginLeft="@dimen/spacing_middle"
                     android:layout_marginRight="@dimen/spacing_middle"
-                    android:text="Rp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_20"
-                    app:fontFamily="sans-serif-medium" />
 
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="350.000"
+                    android:text="Welcome back, "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/welcomemsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moses"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
@@ -76,109 +79,8 @@
 
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_xlarge"
-                android:layout_marginRight="@dimen/spacing_xlarge"
-                android:layout_marginTop="@dimen/spacing_large"
-                app:flexWrap="nowrap"
-                app:justifyContent="space_between">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Scan"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        android:textColor="@android:color/white"
-                        app:fontFamily="sans-serif-medium" />
-
-                    <ImageView
-                        android:layout_width="@dimen/spacing_xmlarge"
-                        android:layout_height="@dimen/spacing_xmlarge"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:tint="@android:color/white"
-                        app:srcCompat="@drawable/ic_center_focus_weak" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Top Up"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        android:textColor="@android:color/white"
-                        app:fontFamily="sans-serif-medium" />
-
-                    <ImageView
-                        android:layout_width="@dimen/spacing_xmlarge"
-                        android:layout_height="@dimen/spacing_xmlarge"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:tint="@android:color/white"
-                        app:srcCompat="@drawable/ic_add_circle_outline" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Send"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        android:textColor="@android:color/white"
-                        app:fontFamily="sans-serif-medium" />
-
-                    <ImageView
-                        android:layout_width="@dimen/spacing_xmlarge"
-                        android:layout_height="@dimen/spacing_xmlarge"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:tint="@android:color/white"
-                        app:srcCompat="@drawable/ic_open_in_new" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Request"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        android:textColor="@android:color/white"
-                        app:fontFamily="sans-serif-medium" />
-
-                    <ImageView
-                        android:layout_width="@dimen/spacing_xmlarge"
-                        android:layout_height="@dimen/spacing_xmlarge"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:rotation="180"
-                        android:tint="@android:color/white"
-                        app:srcCompat="@drawable/ic_open_in_new" />
-
-                </LinearLayout>
-
-            </com.google.android.flexbox.FlexboxLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -233,7 +135,6 @@
                                 android:text="Remaining gas 50%"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/red_300" />
-
                         </LinearLayout>
 
                         <Button
@@ -291,28 +192,6 @@
                             <ImageView
                                 android:layout_width="@dimen/spacing_xmlarge"
                                 android:layout_height="@dimen/spacing_xmlarge"
-                                android:tint="@color/teal_400"
-                                app:srcCompat="@drawable/ic_monetization_on" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_small"
-                                android:text="Chat"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_xmlarge"
-                                android:layout_height="@dimen/spacing_xmlarge"
                                 android:tint="@color/blue_500"
                                 app:srcCompat="@drawable/ic_games" />
 
@@ -321,28 +200,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/spacing_small"
                                 android:text="Track cylinder"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_40" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_xmlarge"
-                                android:layout_height="@dimen/spacing_xmlarge"
-                                android:tint="@color/red_300"
-                                app:srcCompat="@drawable/ic_more_horiz" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_small"
-                                android:text="Buy new"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
@@ -478,7 +335,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Telkomsel"
+                                android:text="Supa Gas"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                                 android:textColor="@color/grey_80"
                                 app:fontFamily="sans-serif-medium" />
@@ -486,7 +343,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="20 Mar 19"
+                                android:text="05 Jan 21"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
@@ -500,7 +357,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="- Rp 50.000"
+                            android:text="Ksh 5,000"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@color/grey_80"
                             app:fontFamily="sans-serif-medium" />
@@ -534,7 +391,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Cahback Shopee"
+                                android:text="Supa Gas"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                                 android:textColor="@color/grey_80"
                                 app:fontFamily="sans-serif-medium" />
@@ -542,7 +399,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="18 Mar 19"
+                                android:text="03 Jan 21"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
@@ -556,7 +413,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+ Rp 25.000"
+                            android:text="Ksh 800"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@color/grey_80"
                             app:fontFamily="sans-serif-medium" />
@@ -590,7 +447,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Elizabeth"
+                                android:text="Total Gas"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                                 android:textColor="@color/grey_80"
                                 app:fontFamily="sans-serif-medium" />
@@ -598,7 +455,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="15 Mar 19"
+                                android:text="15 Nov 20"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
@@ -612,7 +469,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+ Rp 200.000"
+                            android:text="Ksh 1,000"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@color/grey_80"
                             app:fontFamily="sans-serif-medium" />
@@ -646,7 +503,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Kevin John"
+                                android:text="Pro Gas"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                                 android:textColor="@color/grey_80"
                                 app:fontFamily="sans-serif-medium" />
@@ -654,7 +511,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="11 Mar 19"
+                                android:text="11 Nov 20"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                 android:textColor="@color/grey_40" />
 
@@ -668,7 +525,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="- Rp 150.000"
+                            android:text="Ksh 4,500"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@color/grey_80"
                             app:fontFamily="sans-serif-medium" />

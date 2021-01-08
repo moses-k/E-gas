@@ -75,10 +75,16 @@ public class FragmentGasProductNewAll extends Fragment {
                 String[] arrprice = price.split(" ");
                 price = arrprice[1].replace(",","");
 
-                //String requestType = "addcart";
+                SharedPreferences prefs1 = PreferenceManager.getDefaultSharedPreferences(view.getContext()); //Get the preferences
+                String usercontact = prefs1.getString("custuserid", null); //get a String
+                String orderNumber = prefs1.getString("orderNumber", null); //get a String
+                String requestType = "addcart";;
                 try {
-                    // NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
-                    //String result = networkRequest.execute(requestType, name, price).get();
+                    NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
+                    String result = networkRequest.execute(requestType, name, price,usercontact,orderNumber).get();
+                    if(result != null){
+                        Log.i(className, "cart products " + obj.title + " added to cart" );
+                    }
                     //store the cart details in the SharedPreferences
                     int carttotal  = 0;
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext()); //Get the preferences
@@ -132,7 +138,7 @@ public class FragmentGasProductNewAll extends Fragment {
                         Log.i(className, "An error occured: No response ");
                     }
 
-                } catch (JSONException e) {
+                } catch (JSONException | ExecutionException | InterruptedException e) {
                     Log.i(className, "Exception in storing order details in sharedpreference is "+ e.getMessage());
                     Snackbar.make(root, "An error occured", Snackbar.LENGTH_SHORT).show();
                 }

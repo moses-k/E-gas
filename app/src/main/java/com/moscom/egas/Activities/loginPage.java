@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.net.ConnectivityManagerCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -27,12 +28,14 @@ import com.moscom.egas.Network.OkHttpHandler;
 import com.moscom.egas.R;
 import com.moscom.egas.environment.EgasEnvironment;
 import com.moscom.egas.utilities.NetworkCheck;
+import com.moscom.egas.utilities.Utilities;
 
 import org.json.JSONObject;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
@@ -193,8 +196,9 @@ public class loginPage extends AppCompatActivity implements View.OnClickListener
                     edit.putString("custuserid", custuserid);  //add a String
                     edit.putString("usercontact", usercontact);  //add a String
                     edit.putString("userLoginStatus", "yes");  //add a String
+                  //  edit.putString("orderNumber", java.lang.String.valueOf(orderNumber));  //add a String
                     edit.putBoolean("rememberCredentials", true); //add a boolean
-                    edit.commit();  // save the edits.
+                    edit.commit();  // sve the edits.
 
                     Intent intent = new Intent(loginPage.this, dashboard.class);
                     startActivity(intent);

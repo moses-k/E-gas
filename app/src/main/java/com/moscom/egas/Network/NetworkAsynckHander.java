@@ -332,7 +332,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
 
                     ArrayList<GasProduct> arrproducts = new ArrayList<>();
                     Log.i(className, "json mpesaAmount is : "+ mpesaAmount + " custref is : "+ custref + " phoneNumber is : "+ phoneNumber
-                            + " jsoncart is : "+ jsoncart);
+                            + " jsoncart is : "+ jsoncart + "  orderNumber "+ orderNumber);
 
                     url = EgasEnvironment.getJsonServer();
                     JSONObject jsonParam = new JSONObject();
@@ -347,7 +347,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                     jsonParam1.put("Body", jsonParam);
                     json   = jsonParam1.toString();
                     //{ "Body":{ "actioncode": "json","funcode":"getproducts" } }
-                   // Log.i(className, "json Request is : "+ json);
+                    Log.i(className, "json Request is : "+ json);
 
                     OkHttpClient client = new OkHttpClient();
                     body = RequestBody.Companion.create(json, JSON);

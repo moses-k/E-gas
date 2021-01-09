@@ -81,7 +81,9 @@ public class shopping_checkout extends AppCompatActivity implements  View.OnClic
             String custref = prefs.getString("custref", null);
             String usercontact = prefs.getString("usercontact", null);
             String cartprod = prefs.getString("cartprod", null);
-            String ordernumber = prefs.getString("ordernumber", null);
+            String ordernumber = prefs.getString("orderNumber", null);
+
+            Log.i(className, "inside payViaMpesa ordernumber : " + ordernumber);
 
 
             String requestType = "mpesapayment";

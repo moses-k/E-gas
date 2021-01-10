@@ -10,8 +10,4 @@ public class EgasEnvironment {
     public static  String getJsonServer() throws Exception{ 			return JSON_SEVER; }
     public static  String getJsonRequests() throws Exception{ 			return JSON_REQUESTS; }
 
-
-
-
-
 }

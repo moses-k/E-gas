@@ -342,7 +342,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
                     jsonParam.put("phonenumber", phoneNumber);
                     jsonParam.put("mpesaamount", mpesaAmount);
                     jsonParam.put("custref", custref);
-                   jsonParam.put("jsoncart", jsoncart);
+                   jsonParam.put("jsoncart", jsoncart); // .replaceAll("","")
                    jsonParam.put("ordernumber", orderNumber);
                     jsonParam1.put("Body", jsonParam);
                     json   = jsonParam1.toString();
@@ -373,7 +373,7 @@ public class NetworkAsynckHander extends AsyncTask<String,Void,String> {
 
                         }else  if (error.equals("true")) {
                             result1 = "failed";
-                            Log.i(className, "payment success:  jsonResponse is : "+ jsonResponse );
+                            Log.i(className, "payment failed:  jsonResponse is : "+ jsonResponse );
                         }
                     }else{
                         throw  new Exception("No response");

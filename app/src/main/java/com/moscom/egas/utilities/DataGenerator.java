@@ -69,7 +69,6 @@ public class DataGenerator  {
     }
     public static List<GasProduct> getShoppingCartProduct(Context ctx) {
         List<GasProduct> items = new ArrayList<>();
-
         try {
             int total6kgR = 0; int total6kgNew = 0; int total12kgR = 0; int total12kgNew = 0;
             int pro6kgR = 0; int pro6kgNew = 0; int pro12kgR = 0; int pro12kgNew = 0;

@@ -83,12 +83,13 @@ public class shopping_checkout extends AppCompatActivity implements  View.OnClic
             String cartprod = prefs.getString("cartprod", null);
             String ordernumber = prefs.getString("orderNumber", null);
 
-            Log.i(className, "inside payViaMpesa ordernumber : " + ordernumber);
+            Log.i(className, "inside payViaMpesa ordernumber : " + ordernumber + " cartprod "+  cartprod);
 
 
             String requestType = "mpesapayment";
             NetworkAsynckHander networkRequest = new NetworkAsynckHander(this);
             String res = networkRequest.execute(requestType, mpesaAmount, custref, usercontact, cartprod, ordernumber ).get();
+
             Snackbar.make(findViewById(android.R.id.content), "Payment Done  ordernumber:  "+  ordernumber, Snackbar.LENGTH_SHORT).show();
 
 

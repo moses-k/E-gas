@@ -151,8 +151,10 @@ public class FragmentProductGrid extends Fragment {
                         jsonarr.put(jsonParam);
                          obj1 = new JSONObject();
                          obj1.put("cart", jsonarr);
-                         obj1.put("orderNumber", neworderNumber);
-                   }
+                        // obj1.put("orderNumber", neworderNumber);
+                        Log.i(className, "neworderNumber   " + neworderNumber);
+
+                    }
 
                     SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preferences
                     edit.putString("cartprod", obj1.toString());  //add a String
@@ -160,6 +162,7 @@ public class FragmentProductGrid extends Fragment {
                     edit.commit();  // save the edits.
 
                     cartprod = prefs.getString("cartprod", null);
+                    Log.i(className, "cartprod saved in the presaharedpref is   " + cartprod);
 
                     //JSONArray jsonarray = new JSONArray(cartprod);
                     JSONArray jsonarray = (JSONArray) new JSONObject(cartprod).get("cart");
